@@ -7,7 +7,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def table():
-    db_session.global_init("db/mars_explorer.db")
     with db_session.create_session() as db_sess:
         users = db_sess.query(User).all()
         colonisters = dict()
@@ -18,4 +17,5 @@ def table():
 
 
 if __name__ == '__main__':
+    db_session.global_init("db/mars_explorer.db")
     app.run(host='localhost', port=8080, debug=True)
